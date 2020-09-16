@@ -6,3 +6,6 @@
 
 # databases
 db.sqlite3
+
+# python init file package
+*/__init__.py
