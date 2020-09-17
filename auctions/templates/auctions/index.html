@@ -1,14 +1,22 @@
 {% extends "auctions/layout.html" %}
 
+{% load static %}
+
 {% block body %}
     <h2>Active Listings</h2>
 
     <ul>
         {% for auction in auctionListings %}
             <li>
-                <img class="auctionImg" src={{ auction.imageUrl }} alt={{ auction.title }}>
+                {% if auction.imageUrl %}
+                    <img class="auctionImg" src={{ auction.imageUrl }} alt={{ auction.title }}>
+                {% else %}
+                    <img class="auctionImg" src="{% static 'auctions/Images/No_image_available.png' %}">
+                {% endif %}
+
                 <h3 class="auctionTitle">{{ auction.title }}</h3>
                 <strong>Price:</strong> ${{ auction.currentPrice }} <br>
+                <p>{{ auction.description }}</p>
                 <em>Created {{ auction.createdAt }}</em>
             </li>
         {% endfor %}
