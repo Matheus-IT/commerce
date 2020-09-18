@@ -3,6 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
+    ''' Use the properties and methods of AbstractUser '''
     pass
 
 
@@ -11,6 +12,10 @@ class Comments(models.Model):
 
     def __str__(self):
         return f'Content: {self.content}'
+
+
+class Bids(models.Model):
+    pass
 
 
 class AuctionListing(models.Model):
@@ -38,7 +43,3 @@ class AuctionListing(models.Model):
 
     def __str__(self):
         return f'{self.title}'
-
-
-class Bid(models.Model):
-    pass
