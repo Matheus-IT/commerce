@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from django.db import IntegrityError
+
 from .models import *
 
 
@@ -20,7 +22,6 @@ def login_view(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        print(user)
 
         # Check if authentication successful
         if user is not None:
@@ -40,8 +41,6 @@ def logout_view(request):
 
 
 def register(request):
-    from django.db import IntegrityError
-    
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -106,3 +105,8 @@ def createListing(request):
             # give category choices as context to the select
             'categoryChoices': AuctionListing.CATEGORY_CHOICES
         })
+
+def listingPage(request, listingId):
+    auctionListing = AuctionListing.objects.filter(id=listingId)[0]
+
+    return render(request, 'auctions/listingPage.html', { 'listing': auctionListing })

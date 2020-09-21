@@ -15,7 +15,9 @@
                 {% endif %}
                 
                 <div class="textRelated">
-                    <h3 class="auctionTitle">{{ auction.title }}</h3>
+                    <a href="{% url 'auctions:listingPage' auction.id %}">
+                        <h3 class="auctionTitle">{{ auction.title }}</h3>
+                    </a>
                     <strong>Price:</strong> ${{ auction.currentPrice }} <br>
                     <p>{{ auction.description }}</p>
                     <em>Created {{ auction.createdAt }}</em>

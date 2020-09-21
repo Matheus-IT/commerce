@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0.6em;
+  padding: 0.6em 1.6em;
   background-color: #ececec;
 }
 
@@ -93,5 +93,10 @@ h1, h2, h3, h4, h5, h6 {
 .auctionListings .auction .textRelated {
   padding-left: 1em;
   font-family: normal "Times New Roman", sans-serif;
+}
+
+.listingPageContainer .listingImg {
+  max-width: 32em;
+  max-height: 16em;
 }
 /*# sourceMappingURL=styles.css.map */
