@@ -76,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
           align-items: center;
   padding: 0.5em;
   min-height: 16em;
+  border: 0.125em solid rgba(0, 0, 0, 0.15);
   border-radius: 0.5em;
   -webkit-box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
           box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
