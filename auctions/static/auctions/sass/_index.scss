@@ -1,0 +1,25 @@
+.auctionListings {
+	list-style: none;
+
+	.auction {
+		display: flex;
+		align-items: center;
+		padding: 0.5em;
+		min-height: 16em;
+		border-radius: 0.5em;
+		box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
+		
+		&:not(:last-child) {
+			margin-bottom: 1em;
+		}
+		
+		.auctionImg {
+			max-width: 16em;
+		}
+
+		.textRelated {
+			padding-left: 1em;
+			font-family: normal "Times New Roman", sans-serif;
+		}
+	}
+}
