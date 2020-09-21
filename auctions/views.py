@@ -66,4 +66,40 @@ def register(request):
 
 
 def createListing(request):
-    return render(request, 'auctions/createListing.html')
+    if request.method == 'POST':
+        # try to create a new auction listing
+        title = request.POST['title']
+        description = request.POST['description']
+        currentPrice = request.POST['initialPrice']
+        
+        # validate the ones that are not required
+        imageUrl = request.POST['imageUrl']
+        if not imageUrl:
+            imageUrl = ''
+        
+        category = request.POST['categories']
+        if not category:
+            category = ''
+
+        try:
+            auctionListing = AuctionListing.objects.create(
+                title=title,
+                description=description,
+                currentPrice=currentPrice,
+                imageUrl=imageUrl,
+                category=category
+            )
+            auctionListing.save()
+        except IntegrityError:
+            return render(request, 'auctions/createListing.html', {
+                # give category choices as context to the select
+                'categoryChoices': AuctionListing.CATEGORY_CHOICES,
+                'message': 'Something went wrong when trying to create a new auction listing... Try again'
+            })
+        else:
+            return HttpResponseRedirect(reverse('auctions:index'))
+    elif User.is_authenticated:
+        return render(request, 'auctions/createListing.html', {
+            # give category choices as context to the select
+            'categoryChoices': AuctionListing.CATEGORY_CHOICES
+        })
