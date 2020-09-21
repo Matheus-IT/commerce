@@ -36,7 +36,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #appTitle {
   margin: 0;
-  margin-left: 1.6em;
   font-style: italic;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
@@ -61,6 +60,18 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: #222222;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 500px) {
+  .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .nav-item {
+    margin-bottom: 0.5em;
+  }
 }
 
 .auctionListings {
@@ -95,8 +106,42 @@ h1, h2, h3, h4, h5, h6 {
   font-family: normal "Times New Roman", sans-serif;
 }
 
+.listingPageContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.listingPageContainer .title {
+  margin-bottom: 0.4em;
+}
+
+.listingPageContainer .watchListButton {
+  color: #FFF;
+  padding: 0.2em;
+  background-color: gray;
+  border: none;
+  border-radius: 0.2em;
+}
+
+.listingPageContainer .watchListButton:hover {
+  background-color: #a0a0a0;
+}
+
 .listingPageContainer .listingImg {
+  margin: 1.6em;
   max-width: 32em;
   max-height: 16em;
+}
+
+.listingPageContainer .description {
+  font-style: italic;
+}
+
+.listingPageContainer .listingPrice {
+  font-size: 1.6em;
 }
 /*# sourceMappingURL=styles.css.map */

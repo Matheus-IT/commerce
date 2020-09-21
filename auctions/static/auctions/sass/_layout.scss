@@ -15,13 +15,14 @@
 
 #appTitle {
 	margin: 0;
-	margin-left: 1.6em;
 	font-style: italic;
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .nav {
 	&-item {
+		
+
 		&:not(:last-child) {
 			margin-right: 0.5em;
 		}
@@ -41,6 +42,19 @@
 			color: rgb(95, 95, 95);
 			border-bottom-color: rgb(34, 34, 34);
 			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	.header {
+		flex-direction: column;
+
+	}
+
+	.nav {
+		&-item {
+			margin-bottom: 0.5em;
 		}
 	}
 }

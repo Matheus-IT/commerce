@@ -8,12 +8,56 @@
 
 {% block body %}
 	<div class="listingPageContainer">
-		<h1>Listing: {{ listing.title }}</h1>
+		<div class="col1">
+			<h2 class="title">Listing: {{ listing.title }}</h2>
+
+			<button class="watchListButton">WatchList</button>
+			<br>
+			
+			{% if listing.imageUrl %}
+				<img class="listingImg" src={{ listing.imageUrl }} alt={{ listing.title }}>
+			{% else %}
+				<img class="listingImg" src="{% static 'auctions/Images/No_image_available.png' %}">
+			{% endif %}
+
+			<p class="description">Description: {{ listing.description }}</p>
+
+			<div class="listingPrice">
+				<strong>Current price: ${{ listing.currentPrice }}</strong>
+			</div>
+
+			<h3 class="title">Details</h3>
+			<ul>
+				<li>Listed by: Harry</li>
+				
+				{% if listing.category %}
+					<li>Category: {{ listing.category }}</li>
+				{% else %}
+					<li>Category: No Category</li>
+				{% endif %}
+			</ul>
+		</div>
 		
-		{% if listing.imageUrl %}
-			<img class="listingImg" src={{ listing.imageUrl }} alt={{ listing.title }}>
-		{% else %}
-			<img class="listingImg" src="{% static 'auctions/Images/No_image_available.png' %}">
-		{% endif %}
+		<div class="col2">
+			<h2 class="title">Bids</h2>
+			<p>2 bids fo far. Your bid is the current bid.</p>
+			<form action="#">
+				<div class="form-group">
+					<input 
+						required
+						type="number" 
+						class="form-control" 
+						name="bid"
+						min="0"
+						step=".01"
+						placeholder="Bid"
+					>
+				</div>
+
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" value="Place bid">
+				</div>
+			</form>
+		</div>
 	</div>
 {% endblock %}
