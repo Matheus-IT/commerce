@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate, login, logout
-from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -15,12 +14,14 @@ def index(request):
 
 def login_view(request):
     if request.method == 'POST':
+        from django.contrib.auth.models import User
+        
         # Attempt to sign user in
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         print(user)
-        
+
         # Check if authentication successful
         if user is not None:
             login(request, user)
@@ -39,6 +40,8 @@ def logout_view(request):
 
 
 def register(request):
+    from django.db import IntegrityError
+    
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
