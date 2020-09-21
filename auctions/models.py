@@ -33,12 +33,10 @@ class AuctionListing(models.Model):
         related_name='auction'
     )
 
-    CATEGORY_CHOICES = [
-        ('Fashion', 'fashion'),
-        ('Toys', 'toys'),
-        ('Electronics', 'electronics'),
-        ('Home', 'home')
-    ]
+    CATEGORY_LABELS = ('Fashion', 'Toys', 'Electronics', 'Home')
+    CATEGORY_VALUES = ('fashion', 'toys', 'electronics', 'home')
+    
+    CATEGORY_CHOICES = list(zip(CATEGORY_LABELS, CATEGORY_VALUES))
     category = models.CharField(max_length=12, choices=CATEGORY_CHOICES, blank=True)
 
     def __str__(self):
