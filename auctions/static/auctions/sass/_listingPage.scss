@@ -1,34 +1,43 @@
-.columnsContainer {
-	display: flex;
-	justify-content: space-evenly;
+.listingPageContainer {
+	.columnsContainer {
+		display: flex;
+		justify-content: space-evenly;
+		
+		.title {
+			margin-bottom: 0.4em;
+		}
 	
-	.title {
-		margin-bottom: 0.4em;
-	}
-
-	.watchListButton {
-		color: #FFF;
-		padding: 0.2em;
-		background-color: gray;
-		border: none;
-		border-radius: 0.2em;
-
-		&:hover {
-			background-color: rgb(160, 160, 160);
+		.watchListButton {
+			color: #FFF;
+			padding: 0.2em;
+			background-color: gray;
+			border: none;
+			border-radius: 0.2em;
+	
+			&:hover {
+				background-color: rgb(160, 160, 160);
+			}
+		}
+		
+		.listingImg {
+			margin: 1.6em;
+			max-width: 32em;
+			max-height: 16em;
+		}
+	
+		.description {
+			font-style: italic;
+		}
+	
+		.listingPrice {
+			font-size: 1.6em;
 		}
 	}
-	
-	.listingImg {
-		margin: 1.6em;
-		max-width: 32em;
-		max-height: 16em;
-	}
 
-	.description {
-		font-style: italic;
-	}
-
-	.listingPrice {
-		font-size: 1.6em;
+	.commentSection {
+		display: block;
+		width: 70%;
+		margin: auto;
+		background-color: lightGray;
 	}
 }

@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: normal "Times New Roman", sans-serif;
 }
 
-.columnsContainer {
+.listingPageContainer .columnsContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,11 +115,11 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: space-evenly;
 }
 
-.columnsContainer .title {
+.listingPageContainer .columnsContainer .title {
   margin-bottom: 0.4em;
 }
 
-.columnsContainer .watchListButton {
+.listingPageContainer .columnsContainer .watchListButton {
   color: #FFF;
   padding: 0.2em;
   background-color: gray;
@@ -127,21 +127,28 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.2em;
 }
 
-.columnsContainer .watchListButton:hover {
+.listingPageContainer .columnsContainer .watchListButton:hover {
   background-color: #a0a0a0;
 }
 
-.columnsContainer .listingImg {
+.listingPageContainer .columnsContainer .listingImg {
   margin: 1.6em;
   max-width: 32em;
   max-height: 16em;
 }
 
-.columnsContainer .description {
+.listingPageContainer .columnsContainer .description {
   font-style: italic;
 }
 
-.columnsContainer .listingPrice {
+.listingPageContainer .columnsContainer .listingPrice {
   font-size: 1.6em;
+}
+
+.listingPageContainer .commentSection {
+  display: block;
+  width: 70%;
+  margin: auto;
+  background-color: lightGray;
 }
 /*# sourceMappingURL=styles.css.map */

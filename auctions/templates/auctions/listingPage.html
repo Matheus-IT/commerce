@@ -64,14 +64,17 @@
 
 		<hr>
 
-		<div class="commentsSection">
-			<h3>Comments Section</h3>
+		<div class="commentSection">
+			<h3 class="commentSection__title">Comment Section</h3>
 			
-			{% if listing_comments %}
-				<p>{{ listing_comments }}</p>
-			{% else %}
-				<p>No comments yet...</p>
-			{% endif %}
+			{% for comment in listing_comments %}
+				<div class="comment">
+					<h4 class="comment__author">{{ listing.author }} says</h4>
+					<p class="comment__content">{{ comment.content }}</p>
+				</div>
+			{% empty %}
+				<p class="no_comments_yet">No comments yet...</p>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}
