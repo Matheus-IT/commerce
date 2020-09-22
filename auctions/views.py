@@ -108,6 +108,7 @@ def createListing(request):
             'categoryChoices': AuctionListing.CATEGORY_CHOICES
         })
 
+
 def listingPage(request, listingId):
     auctionListing = AuctionListing.objects.get(id=listingId)
     auctionComments = auctionListing.comments.all()
