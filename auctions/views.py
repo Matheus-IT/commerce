@@ -107,6 +107,10 @@ def createListing(request):
         })
 
 def listingPage(request, listingId):
-    auctionListing = AuctionListing.objects.filter(id=listingId)[0]
+    auctionListing = AuctionListing.objects.get(id=listingId)
+    auctionComments = Comment.objects.filter(auction_id=listingId)
 
-    return render(request, 'auctions/listingPage.html', { 'listing': auctionListing })
+    return render(request, 'auctions/listingPage.html', {
+        'listing': auctionListing,
+        'listing_comments': auctionComments
+    })

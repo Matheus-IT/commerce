@@ -67,11 +67,11 @@
 		<div class="commentsSection">
 			<h3>Comments Section</h3>
 			
-			{% for comment in listing.comments %}
-				<p>{{ comment }}</p>
-				{% empty %}
-					<p>No comments yet...</p>
-			{% endfor %}
+			{% if listing_comments %}
+				<p>{{ listing_comments }}</p>
+			{% else %}
+				<p>No comments yet...</p>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
