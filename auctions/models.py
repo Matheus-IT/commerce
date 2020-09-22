@@ -7,14 +7,14 @@ class User(AbstractUser):
     pass
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     content = models.CharField(max_length=120)
 
     def __str__(self):
         return f'Content: {self.content}'
 
 
-class Bids(models.Model):
+class Bid(models.Model):
     pass
 
 
@@ -26,7 +26,7 @@ class AuctionListing(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     
     comments = models.ForeignKey(
-        Comments, 
+        Comment, 
         on_delete=models.CASCADE, 
         blank=True,
         null=True,
