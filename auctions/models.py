@@ -13,6 +13,7 @@ class AuctionListing(models.Model):
     currentPrice = models.DecimalField(max_digits=10, decimal_places=2)
     imageUrl = models.CharField(max_length=1024, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    author = models.CharField(max_length=32)
 
     CATEGORY_LABELS = ('Fashion', 'Toys', 'Electronics', 'Home')
     CATEGORY_VALUES = ('fashion', 'toys', 'electronics', 'home')

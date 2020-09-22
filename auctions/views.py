@@ -73,6 +73,7 @@ def createListing(request):
         title = request.POST['title']
         description = request.POST['description']
         currentPrice = request.POST['initialPrice']
+        author = request.user.username
         
         # validate the ones that are not required
         imageUrl = request.POST['imageUrl']
@@ -89,6 +90,7 @@ def createListing(request):
                 description=description,
                 currentPrice=currentPrice,
                 imageUrl=imageUrl,
+                author=author,
                 category=category
             )
             auctionListing.save()
