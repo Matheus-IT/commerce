@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: normal "Times New Roman", sans-serif;
 }
 
-.listingPageContainer {
+.columnsContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,11 +115,11 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: space-evenly;
 }
 
-.listingPageContainer .title {
+.columnsContainer .title {
   margin-bottom: 0.4em;
 }
 
-.listingPageContainer .watchListButton {
+.columnsContainer .watchListButton {
   color: #FFF;
   padding: 0.2em;
   background-color: gray;
@@ -127,21 +127,21 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.2em;
 }
 
-.listingPageContainer .watchListButton:hover {
+.columnsContainer .watchListButton:hover {
   background-color: #a0a0a0;
 }
 
-.listingPageContainer .listingImg {
+.columnsContainer .listingImg {
   margin: 1.6em;
   max-width: 32em;
   max-height: 16em;
 }
 
-.listingPageContainer .description {
+.columnsContainer .description {
   font-style: italic;
 }
 
-.listingPageContainer .listingPrice {
+.columnsContainer .listingPrice {
   font-size: 1.6em;
 }
 /*# sourceMappingURL=styles.css.map */
