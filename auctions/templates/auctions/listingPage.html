@@ -75,6 +75,19 @@
 			{% empty %}
 				<p class="no_comments_yet">No comments yet...</p>
 			{% endfor %}
+
+			<form action="{% url 'auctions:addComment' listing.id %}" method="post">
+				<textarea 
+					required
+					class="newComment" 
+					name="newComment" 
+					cols="90" 
+					rows="7" 
+					placeholder="Add a comment..."
+				></textarea>
+
+				<button class="btn btn-primary postComment" type="submit">Post Comment</button>
+			</form>
 		</div>
 	</div>
 {% endblock %}

@@ -8,6 +8,10 @@ body {
   padding: 0;
 }
 
+p {
+  color: #555555;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.6em;
 }
@@ -23,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0.6em 1.6em;
-  background-color: #ececec;
+  background-color: #e7e7e7;
 }
 
 .userStatus {
@@ -143,12 +147,55 @@ h1, h2, h3, h4, h5, h6 {
 
 .listingPageContainer .columnsContainer .listingPrice {
   font-size: 1.6em;
+  margin-bottom: 1em;
+}
+
+.listingPageContainer .commentSection, .listingPageContainer .commentSection .comment, .listingPageContainer .commentSection .newComment {
+  padding: 1em;
+  border: 0.125em solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.5em;
 }
 
 .listingPageContainer .commentSection {
   display: block;
   width: 70%;
   margin: auto;
-  background-color: lightGray;
+  margin-bottom: 4.6em;
+  background-color: #e7e7e7;
+}
+
+.listingPageContainer .commentSection .commentSection__title {
+  margin-bottom: 0.6em;
+}
+
+.listingPageContainer .commentSection .comment {
+  padding: 0.6em;
+  background-color: #fdfdfd;
+}
+
+.listingPageContainer .commentSection .comment:not(:last-child) {
+  margin-bottom: 0.4em;
+}
+
+.listingPageContainer .commentSection .comment__author {
+  margin-bottom: 0.2em;
+}
+
+.listingPageContainer .commentSection .comment__content {
+  margin: 0;
+}
+
+.listingPageContainer .commentSection .no_comments_yet {
+  font-style: italic;
+}
+
+.listingPageContainer .commentSection .newComment {
+  border-color: #999999;
+  width: 100%;
+}
+
+.listingPageContainer .commentSection .postComment {
+  margin-top: 0.4em;
+  margin-left: 85%;
 }
 /*# sourceMappingURL=styles.css.map */

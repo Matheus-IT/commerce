@@ -31,13 +31,59 @@
 	
 		.listingPrice {
 			font-size: 1.6em;
+			margin-bottom: 1em;
 		}
+	}
+
+	%rounded_window {
+		padding: 1em;
+		border: 0.125em solid rgba(0, 0, 0, 0.15);
+		border-radius: 0.5em;
 	}
 
 	.commentSection {
 		display: block;
 		width: 70%;
 		margin: auto;
-		background-color: lightGray;
+		margin-bottom: 4.6em;
+		@extend %rounded_window;
+		background-color: $lightGray;
+
+		.commentSection__title {
+			margin-bottom: 0.6em;
+		}
+
+		.comment {
+			@extend %rounded_window;
+			padding: 0.6em;
+			background-color: #fdfdfd;
+
+			&:not(:last-child) {
+				margin-bottom: 0.4em;
+			}
+			
+			&__author {
+				margin-bottom: 0.2em;
+			}
+
+			&__content {
+				margin: 0;
+			}
+		}
+
+		.no_comments_yet {
+			font-style: italic;
+		}
+
+		.newComment {
+			@extend %rounded_window;
+			border-color: $gray;
+			width: 100%;
+		}
+
+		.postComment {
+			margin-top: 0.4em;
+			margin-left: 85%;
+		}
 	}
 }
