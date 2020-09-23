@@ -76,20 +76,26 @@
 				<p class="no_comments_yet">No comments yet...</p>
 			{% endfor %}
 
-			<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
-				{% csrf_token %}
-				
-				<textarea 
-					required
-					class="newComment" 
-					name="newComment" 
-					cols="90" 
-					rows="7" 
-					placeholder="Add a comment..."
-				></textarea>
+			{% if user.is_authenticated %}
+				<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
+					{% csrf_token %}
+					
+					<textarea 
+						required
+						class="newComment" 
+						name="newComment" 
+						cols="90" 
+						rows="7" 
+						placeholder="Add a comment..."
+					></textarea>
 
-				<button class="btn btn-primary postComment" type="submit">Post Comment</button>
-			</form>
+					<button class="btn btn-primary postComment" type="submit">Post Comment</button>
+				</form>
+			{% else %}
+				<em>
+					To add a comment you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+				</em>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
