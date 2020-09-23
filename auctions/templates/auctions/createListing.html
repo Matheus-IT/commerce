@@ -64,8 +64,8 @@
 				<optgroup>
 					<option selected hidden value="">...</option>
 					{% for category in categoryChoices %}
-						<!-- category.0 == label, category.1 == value -->
-						<option value={{ category.1 }}>{{ category.0 }}</option> 
+						<!-- category.0 == value, category.1 == label -->
+						<option value={{ category.0 }}>{{ category.1 }}</option> 
 					{% endfor %}
 				</optgroup>
 			</select>

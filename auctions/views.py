@@ -111,7 +111,7 @@ def createListing(request):
 
 def listingPage(request, listingId):
     auctionListing = None
-    auctionComments = [None]
+    auctionComments = []
     
     if request.method == 'POST':
         # create a new comment
@@ -143,4 +143,18 @@ def listingPage(request, listingId):
 
 
 def categoriesPage(request):
-    return HttpResponse('categories :)')
+    filteredAuctionListings = []
+    
+    if request.method == 'POST':
+        categoryChosen = request.POST['categories']
+        print(f'categoryChosen == {categoryChosen}')
+
+        filteredAuctionListings = AuctionListing.objects.filter(category=categoryChosen)
+        print(f'filteredAuctionListings == {filteredAuctionListings}')
+
+    categoryChoices = AuctionListing.CATEGORY_CHOICES
+    
+    return render(request, 'auctions/categories.html', {
+        'categoryChoices': categoryChoices,
+        'filteredAuctionListings': filteredAuctionListings
+    })

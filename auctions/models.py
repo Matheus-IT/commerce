@@ -15,10 +15,10 @@ class AuctionListing(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=32)
 
-    CATEGORY_LABELS = ('Fashion', 'Toys', 'Electronics', 'Home')
     CATEGORY_VALUES = ('fashion', 'toys', 'electronics', 'home')
+    CATEGORY_LABELS = ('Fashion', 'Toys', 'Electronics', 'Home')
     
-    CATEGORY_CHOICES = list(zip(CATEGORY_LABELS, CATEGORY_VALUES))
+    CATEGORY_CHOICES = list(zip( CATEGORY_VALUES, CATEGORY_LABELS))
     category = models.CharField(max_length=12, choices=CATEGORY_CHOICES, blank=True)
 
     def __str__(self):
