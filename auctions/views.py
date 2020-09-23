@@ -140,3 +140,7 @@ def listingPage(request, listingId):
         'listing': auctionListing,
         'listing_comments': auctionComments
     })
+
+
+def categoriesPage(request):
+    return HttpResponse('categories :)')
