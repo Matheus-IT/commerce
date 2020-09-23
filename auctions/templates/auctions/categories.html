@@ -1,0 +1,52 @@
+{% extends './layout.html' %}
+
+{% load static %}
+
+
+{% block title %}
+	Categories
+{% endblock %}
+
+
+{% block body %}
+	<div class="categoriesPage">
+		<h1 class="title">Categories</h1>
+	
+		<form class="formChooseCategory" action="{% url 'auctions:categories' %}" method="post">
+			{% csrf_token %}
+			
+			<label for="categories">Choose a category here:</label>
+	
+			<select required name="categories" id="categories" class="custom-select">
+				<option value="" selected hidden>Categories...</option>
+				{% for category in categoryChoices %}
+					<!-- 0 == value; 1 == label -->
+					<option value={{ category.0 }}>{{ category.1 }}</option>
+				{% endfor %}
+			</select>
+			
+			<button class="btn btn-primary" type="submit">Choose Category</button>
+		</form>
+
+		<ul class="auctionListings">
+			{% for auction in filteredAuctionListings %}
+				<li class="auction">
+					{% if auction.imageUrl %}
+						<img class="auctionImg" src={{ auction.imageUrl }} alt={{ auction.title }}>
+					{% else %}
+						<img class="auctionImg" src="{% static 'auctions/Images/No_image_available.png' %}">
+					{% endif %}
+					
+					<div class="textRelated">
+						<a href="{% url 'auctions:listingPage' auction.id %}">
+							<h3 class="auctionTitle">{{ auction.title }}</h3>
+						</a>
+						<strong>Price:</strong> ${{ auction.currentPrice }} <br>
+						<p>{{ auction.description }}</p>
+						<em>Created {{ auction.createdAt }}</em>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
