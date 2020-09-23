@@ -26,7 +26,8 @@ class AuctionListing(models.Model):
 
 
 class Comment(models.Model):
-    content = models.CharField(max_length=120)
+    content = models.CharField(max_length=1024)
+    commentAuthor = models.CharField(max_length=32)
     
     auction = models.ForeignKey(
         AuctionListing,

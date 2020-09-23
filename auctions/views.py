@@ -110,8 +110,31 @@ def createListing(request):
 
 
 def listingPage(request, listingId):
-    auctionListing = AuctionListing.objects.get(id=listingId)
-    auctionComments = auctionListing.comments.all()
+    auctionListing = None
+    auctionComments = [None]
+    
+    if request.method == 'POST':
+        # create a new comment
+        newCommentContent = request.POST['newComment']
+
+        try:
+            auctionListing = AuctionListing.objects.get(id=listingId)
+            currentUser = request.user.username
+
+            newComment = Comment.objects.create(
+                content=newCommentContent,
+                commentAuthor=currentUser,
+                auction=auctionListing
+            )
+            newComment.save()
+
+            auctionComments = auctionListing.comments.all()
+            print(f'auctionComments == {auctionComments}')
+        except Exception as err:
+            print(err)
+    else:
+        auctionListing = AuctionListing.objects.get(id=listingId)
+        auctionComments = auctionListing.comments.all()
 
     return render(request, 'auctions/listingPage.html', {
         'listing': auctionListing,

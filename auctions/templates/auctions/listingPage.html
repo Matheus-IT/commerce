@@ -69,14 +69,16 @@
 			
 			{% for comment in listing_comments %}
 				<div class="comment">
-					<h4 class="comment__author">{{ listing.author }} says</h4>
+					<h4 class="comment__author">{{ comment.commentAuthor }} says</h4>
 					<p class="comment__content">{{ comment.content }}</p>
 				</div>
 			{% empty %}
 				<p class="no_comments_yet">No comments yet...</p>
 			{% endfor %}
 
-			<form action="{% url 'auctions:addComment' listing.id %}" method="post">
+			<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
+				{% csrf_token %}
+				
 				<textarea 
 					required
 					class="newComment" 
