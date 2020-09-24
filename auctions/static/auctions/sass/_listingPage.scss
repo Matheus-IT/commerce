@@ -10,12 +10,12 @@
 		.watchListButton {
 			color: #FFF;
 			padding: 0.2em;
-			background-color: gray;
+			background-color: $gray;
 			border: none;
 			border-radius: 0.2em;
 	
 			&:hover {
-				background-color: rgb(160, 160, 160);
+				background-color: lighten($gray, 5);
 			}
 		}
 		
@@ -36,11 +36,11 @@
 	}
 
 	.commentSection {
+		@extend %rounded_window;
 		display: block;
 		width: 70%;
 		margin: auto;
 		margin-bottom: 4.6em;
-		@extend %rounded_window;
 		background-color: $lightGray;
 
 		.commentSection__title {

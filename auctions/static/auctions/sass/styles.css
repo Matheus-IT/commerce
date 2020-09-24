@@ -50,13 +50,13 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
   font-weight: 600;
   border-radius: 0.3em;
-  border-bottom: 0.125em solid #b9b9b9;
+  border-bottom: 0.125em solid #999999;
   text-transform: uppercase;
-  background-color: #b9b9b9;
+  background-color: #999999;
   transition: all 250ms ease-in-out;
 }
 .nav-link:hover {
-  color: #5f5f5f;
+  color: #e6e6e6;
   border-bottom-color: #222222;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
@@ -103,12 +103,12 @@ h1, h2, h3, h4, h5, h6 {
 .listingPageContainer .columnsContainer .watchListButton {
   color: #FFF;
   padding: 0.2em;
-  background-color: gray;
+  background-color: #999999;
   border: none;
   border-radius: 0.2em;
 }
 .listingPageContainer .columnsContainer .watchListButton:hover {
-  background-color: #a0a0a0;
+  background-color: #a6a6a6;
 }
 .listingPageContainer .columnsContainer .listingImg {
   margin: 1.6em;
@@ -157,11 +157,25 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 85%;
 }
 
+.createListingForm .buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+.createListingForm .buttonContainer .btn {
+  width: 20%;
+}
+
 .categoriesPage .title {
   margin-bottom: 0.4em;
 }
 .categoriesPage .formChooseCategory {
-  background-color: #999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.categoriesPage .formChooseCategory .custom-select {
+  width: 60%;
+  margin: 1em;
 }
 
 /*# sourceMappingURL=styles.css.map */

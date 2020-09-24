@@ -15,7 +15,7 @@
 		</strong>
 	{% endif %}
 	
-	<form action="{% url 'auctions:createListing' %}" method="post">
+	<form class="createListingForm" action="{% url 'auctions:createListing' %}" method="post">
 		{% csrf_token %}
 
 		<div class="form-group">
@@ -71,6 +71,8 @@
 			</select>
 		</div>
 
-		<input class="btn btn-primary" type="submit" title="Create Auction Listing">
+		<div class="buttonContainer">
+			<input class="btn btn-primary" type="submit" title="Create Auction Listing">
+		</div>
 	</form>
 {% endblock %}
