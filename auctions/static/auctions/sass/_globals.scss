@@ -8,6 +8,13 @@ $lightGray: rgb(231, 231, 231);
 $gray: rgb(153, 153, 153);
 $darkGray: rgb(85, 85, 85);
 
+// default designs 
+%rounded_window {
+	padding: 1em;
+	border: 0.125em solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.5em;
+}
+
 body {
 	margin: 0;
 	padding: 0;

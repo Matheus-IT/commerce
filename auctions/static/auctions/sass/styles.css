@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+.listingPageContainer .commentSection .newComment, .listingPageContainer .commentSection .comment, .listingPageContainer .commentSection {
+  padding: 1em;
+  border: 0.125em solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.5em;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -17,15 +23,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   padding: 0.6em 1.6em;
   background-color: #e7e7e7;
 }
@@ -34,8 +34,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #FFF;
   padding: 0.6em;
   border-radius: 0.3em;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.125);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.125);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.125);
 }
 
 #appTitle {
@@ -47,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
 .nav-item:not(:last-child) {
   margin-right: 0.5em;
 }
-
 .nav-link {
   color: black;
   font-weight: 600;
@@ -55,74 +53,53 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 0.125em solid #b9b9b9;
   text-transform: uppercase;
   background-color: #b9b9b9;
-  -webkit-transition: all 250ms ease-in-out;
   transition: all 250ms ease-in-out;
 }
-
 .nav-link:hover {
   color: #5f5f5f;
   border-bottom-color: #222222;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 500px) {
   .header {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
+
   .nav-item {
     margin-bottom: 0.5em;
   }
 }
-
 .auctionListings {
   list-style: none;
 }
-
 .auctionListings .auction {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0.5em;
   min-height: 16em;
   border: 0.125em solid rgba(0, 0, 0, 0.15);
   border-radius: 0.5em;
-  -webkit-box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
-          box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
 }
-
 .auctionListings .auction:not(:last-child) {
   margin-bottom: 1em;
 }
-
 .auctionListings .auction .auctionImg {
   max-width: 16em;
 }
-
 .auctionListings .auction .textRelated {
   padding-left: 1em;
   font-family: normal "Times New Roman", sans-serif;
 }
 
 .listingPageContainer .columnsContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
 }
-
 .listingPageContainer .columnsContainer .title {
   margin-bottom: 0.4em;
 }
-
 .listingPageContainer .columnsContainer .watchListButton {
   color: #FFF;
   padding: 0.2em;
@@ -130,32 +107,21 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 0.2em;
 }
-
 .listingPageContainer .columnsContainer .watchListButton:hover {
   background-color: #a0a0a0;
 }
-
 .listingPageContainer .columnsContainer .listingImg {
   margin: 1.6em;
   max-width: 32em;
   max-height: 16em;
 }
-
 .listingPageContainer .columnsContainer .description {
   font-style: italic;
 }
-
 .listingPageContainer .columnsContainer .listingPrice {
   font-size: 1.6em;
   margin-bottom: 1em;
 }
-
-.listingPageContainer .commentSection, .listingPageContainer .commentSection .comment, .listingPageContainer .commentSection .newComment {
-  padding: 1em;
-  border: 0.125em solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.5em;
-}
-
 .listingPageContainer .commentSection {
   display: block;
   width: 70%;
@@ -163,37 +129,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4.6em;
   background-color: #e7e7e7;
 }
-
 .listingPageContainer .commentSection .commentSection__title {
   margin-bottom: 0.6em;
 }
-
 .listingPageContainer .commentSection .comment {
   padding: 0.6em;
   background-color: #fdfdfd;
 }
-
 .listingPageContainer .commentSection .comment:not(:last-child) {
   margin-bottom: 0.4em;
 }
-
 .listingPageContainer .commentSection .comment__author {
   margin-bottom: 0.2em;
 }
-
 .listingPageContainer .commentSection .comment__content {
   margin: 0;
 }
-
 .listingPageContainer .commentSection .no_comments_yet {
   font-style: italic;
 }
-
 .listingPageContainer .commentSection .newComment {
   border-color: #999999;
   width: 100%;
 }
-
 .listingPageContainer .commentSection .postComment {
   margin-top: 0.4em;
   margin-left: 85%;
@@ -202,4 +160,8 @@ h1, h2, h3, h4, h5, h6 {
 .categoriesPage .title {
   margin-bottom: 0.4em;
 }
+.categoriesPage .formChooseCategory {
+  background-color: #999999;
+}
+
 /*# sourceMappingURL=styles.css.map */

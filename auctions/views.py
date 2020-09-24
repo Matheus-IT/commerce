@@ -147,10 +147,8 @@ def categoriesPage(request):
     
     if request.method == 'POST':
         categoryChosen = request.POST['categories']
-        print(f'categoryChosen == {categoryChosen}')
 
         filteredAuctionListings = AuctionListing.objects.filter(category=categoryChosen)
-        print(f'filteredAuctionListings == {filteredAuctionListings}')
 
     categoryChoices = AuctionListing.CATEGORY_CHOICES
     
