@@ -9,6 +9,10 @@
 		justify-content: center;
 		align-items: center;
 
+		@include breakpoint-down(medium) {
+			flex-direction: column;
+		}
+
 		.custom-select {
 			width: 60%;
 			margin: 1em;

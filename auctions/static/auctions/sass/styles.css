@@ -82,6 +82,15 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.5em;
   box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
 }
+@media (max-width: 1024px) {
+  .auctionListings .auction {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .auctionListings .auction .auctionTitle {
+    margin-bottom: 0.4em;
+  }
+}
 .auctionListings .auction:not(:last-child) {
   margin-bottom: 1em;
 }
@@ -163,6 +172,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .createListingForm .buttonContainer .btn {
   width: 20%;
+  margin-bottom: 1.6em;
 }
 
 .categoriesPage .title {
@@ -172,6 +182,11 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 1024px) {
+  .categoriesPage .formChooseCategory {
+    flex-direction: column;
+  }
 }
 .categoriesPage .formChooseCategory .custom-select {
   width: 60%;

@@ -9,6 +9,15 @@
 		border: 0.125em solid rgba(0, 0, 0, 0.15);
 		border-radius: 0.5em;
 		box-shadow: 6px 0 12px rgba(0, 0, 0, 0.15);
+
+		@include breakpoint-down(medium) {
+			flex-direction: column;
+			justify-content: center;
+
+			.auctionTitle {
+				margin-bottom: 0.4em;
+			}
+		}
 		
 		&:not(:last-child) {
 			margin-bottom: 1em;
