@@ -41,24 +41,34 @@
 			
 			<div class="col2">
 				<h2 class="title">Bids</h2>
+				<ul>
+					{% for bid in listing.bids.all %}
+						<li>{{ bid }}</li>
+					{% endfor %}
+				</ul>
 				<p>2 bids fo far. Your bid is the current bid.</p>
-				<form action="#">
-					<div class="form-group">
-						<input 
-							required
-							type="number" 
-							class="form-control" 
-							name="bid"
-							min="0"
-							step=".01"
-							placeholder="Bid"
-						>
-					</div>
-	
-					<div class="form-group">
-						<input class="btn btn-primary" type="submit" value="Place bid">
-					</div>
-				</form>
+				
+				{% if user.is_authenticated %}
+					<form action="#">
+						<div class="form-group">
+							<input 
+								required
+								type="number" 
+								class="form-control" 
+								name="bid"
+								min="0"
+								step=".01"
+								placeholder="Bid"
+							>
+						</div>
+		
+						<div class="form-group">
+							<input class="btn btn-primary" type="submit" value="Place bid">
+						</div>
+					</form>
+				{% else %}
+					To bid you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+				{% endif %}
 			</div>
 		</div>
 
@@ -67,7 +77,7 @@
 		<div class="commentSection">
 			<h3 class="commentSection__title">Comment Section</h3>
 			
-			{% for comment in listing_comments %}
+			{% for comment in listing.comments.all %}
 				<div class="comment">
 					<h4 class="comment__author">{{ comment.commentAuthor }} says</h4>
 					<p class="comment__content">{{ comment.content }}</p>

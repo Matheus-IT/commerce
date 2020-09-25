@@ -42,4 +42,14 @@ class Comment(models.Model):
 
 
 class Bid(models.Model):
-    pass
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    bidAuthor = models.CharField(max_length=32)
+    
+    auction = models.ForeignKey(
+        AuctionListing,
+        on_delete=models.CASCADE, 
+        related_name='bids'
+    )
+
+    def __str__(self):
+        return f'Value: {self.value} Bid author: {self.bidAuthor}'

@@ -111,7 +111,6 @@ def createListing(request):
 
 def listingPage(request, listingId):
     auctionListing = None
-    auctionComments = []
     
     if request.method == 'POST':
         # create a new comment
@@ -127,19 +126,12 @@ def listingPage(request, listingId):
                 auction=auctionListing
             )
             newComment.save()
-
-            auctionComments = auctionListing.comments.all()
-            print(f'auctionComments == {auctionComments}')
         except Exception as err:
             print(err)
     else:
         auctionListing = AuctionListing.objects.get(id=listingId)
-        auctionComments = auctionListing.comments.all()
 
-    return render(request, 'auctions/listingPage.html', {
-        'listing': auctionListing,
-        'listing_comments': auctionComments
-    })
+    return render(request, 'auctions/listingPage.html', { 'listing': auctionListing })
 
 
 def categoriesPage(request):
