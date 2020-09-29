@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views import View
 
 from django.db import IntegrityError
 
@@ -109,29 +110,72 @@ def createListing(request):
         })
 
 
-def listingPage(request, listingId):
-    auctionListing = None
-    
-    if request.method == 'POST':
-        # create a new comment
-        newCommentContent = request.POST['newComment']
 
-        try:
-            auctionListing = AuctionListing.objects.get(id=listingId)
-            currentUser = request.user.username
+class ListingPage(View):
+    from .forms import AddBidForm, AddCommentForm
 
-            newComment = Comment.objects.create(
-                content=newCommentContent,
-                commentAuthor=currentUser,
-                auction=auctionListing
-            )
-            newComment.save()
-        except Exception as err:
-            print(err)
-    else:
+    template_name = 'auctions/listingPage.html'
+
+    def _getForm(self, request, formClass, prefix):
+        data = request.POST if prefix in request.POST else None
+        return formClass(data, prefix=prefix)
+
+    def get(self, request, listingId):
         auctionListing = AuctionListing.objects.get(id=listingId)
 
-    return render(request, 'auctions/listingPage.html', { 'listing': auctionListing })
+        return render(request, self.template_name, {
+            'listing': auctionListing,
+            'BidForm': self.AddBidForm(),
+            'CommentForm': self.AddCommentForm()
+        })
+
+    def post(self, request, listingId):
+        auctionListing = AuctionListing.objects.get(id=listingId)
+
+        BidForm = self._getForm(request, self.AddBidForm, prefix=self.AddBidForm.prefix)
+        CommentForm = self._getForm(request, self.AddCommentForm, prefix=self.AddCommentForm.prefix)
+
+        print(request.POST)
+
+        currentUser = request.user.username
+
+        if CommentForm.is_valid() and CommentForm.is_bound:
+            # create a new comment
+            newCommentContent = CommentForm.cleaned_data['newCommentValue']
+
+            try:
+                newComment = Comment.objects.create(
+                    content=newCommentContent,
+                    commentAuthor=currentUser,
+                    auction=auctionListing
+                )
+                newComment.save()
+            except Exception as err:
+                print(err)
+        elif BidForm.is_valid() and BidForm.is_bound:
+            # post new bid
+            print(f'CommentForm : {CommentForm.is_bound}')
+            print(f'BidForm : {BidForm.is_bound}')
+
+            newBidContent = BidForm.cleaned_data['newBidValue']
+
+            try:
+                newBid = Bid.objects.create(
+                    value = newBidContent,
+                    bidAuthor=currentUser,
+                    auction=auctionListing
+                )
+                newBid.save()
+            except Exception as err:
+                print(err)
+        else:
+            print('Something went wrong...')
+
+        return render(request, self.template_name, {
+            'listing': auctionListing,
+            'BidForm': BidForm,
+            'CommentForm': CommentForm
+        })
 
 
 def categoriesPage(request):

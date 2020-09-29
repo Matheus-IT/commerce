@@ -46,24 +46,22 @@
 						<li>{{ bid }}</li>
 					{% endfor %}
 				</ul>
-				<p>2 bids fo far. Your bid is the current bid.</p>
+				<p>
+					{{ listing.bids.all|length }} bids so far.
+					Your bid is the current bid.</p>
 				
 				{% if user.is_authenticated %}
-					<form action="#">
+					<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
+						{% csrf_token %}
+
 						<div class="form-group">
-							<input 
-								required
-								type="number" 
-								class="form-control" 
-								name="bid"
-								min="0"
-								step=".01"
-								placeholder="Bid"
-							>
+							{{ BidForm }}
 						</div>
 		
 						<div class="form-group">
-							<input class="btn btn-primary" type="submit" value="Place bid">
+							<button class="btn btn-primary" name="{{ BidForm.prefix }}" type="submit">
+								Place bid
+							</button>
 						</div>
 					</form>
 				{% else %}
@@ -90,16 +88,11 @@
 				<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
 					{% csrf_token %}
 					
-					<textarea 
-						required
-						class="newComment" 
-						name="newComment" 
-						cols="90" 
-						rows="7" 
-						placeholder="Add a comment..."
-					></textarea>
+					{{ CommentForm }}
 
-					<button class="btn btn-primary postComment" type="submit">Post Comment</button>
+					<button class="btn btn-primary postComment" name="{{ CommentForm.prefix }}" type="submit">
+						Post Comment
+					</button>
 				</form>
 			{% else %}
 				<em>
