@@ -135,9 +135,9 @@ class ListingPage(View):
         BidForm = self._getForm(request, self.AddBidForm, prefix=self.AddBidForm.prefix)
         CommentForm = self._getForm(request, self.AddCommentForm, prefix=self.AddCommentForm.prefix)
 
-        print(request.POST)
-
         currentUser = request.user.username
+
+        aditionalErrorMessage = ''
 
         if CommentForm.is_valid() and CommentForm.is_bound:
             # create a new comment
@@ -153,28 +153,36 @@ class ListingPage(View):
             except Exception as err:
                 print(err)
         elif BidForm.is_valid() and BidForm.is_bound:
-            # post new bid
-            print(f'CommentForm : {CommentForm.is_bound}')
-            print(f'BidForm : {BidForm.is_bound}')
-
             newBidContent = BidForm.cleaned_data['newBidValue']
 
-            try:
-                newBid = Bid.objects.create(
-                    value = newBidContent,
-                    bidAuthor=currentUser,
-                    auction=auctionListing
-                )
-                newBid.save()
-            except Exception as err:
-                print(err)
+            if newBidContent > auctionListing.currentPrice:
+                # post new bid
+                try:
+                    newBid = Bid.objects.create(
+                        value = newBidContent,
+                        bidAuthor=currentUser,
+                        auction=auctionListing
+                    )
+                    
+                    auctionListing.currentPrice = newBid.value
+                    auctionListing.save()
+                    newBid.save()
+                except Exception as err:
+                    print(err)
+            else:
+                aditionalErrorMessage = """
+                    <ul class="errorlist">
+                        <li><strong>The bid should be greater than the current price</strong></li>
+                    </ul>
+                """
         else:
             print('Something went wrong...')
 
         return render(request, self.template_name, {
             'listing': auctionListing,
             'BidForm': BidForm,
-            'CommentForm': CommentForm
+            'CommentForm': CommentForm,
+            'aditionalErrorMessage': aditionalErrorMessage
         })
 
 

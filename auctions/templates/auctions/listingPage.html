@@ -57,6 +57,8 @@
 						<div class="form-group">
 							{{ BidForm }}
 						</div>
+
+						{{ aditionalErrorMessage|safe }}
 		
 						<div class="form-group">
 							<button class="btn btn-primary" name="{{ BidForm.prefix }}" type="submit">
