@@ -150,6 +150,7 @@ class ListingPage(View):
                     auction=auctionListing
                 )
                 newComment.save()
+                CommentForm = self.AddCommentForm()
             except Exception as err:
                 print(err)
         elif BidForm.is_valid() and BidForm.is_bound:
@@ -167,6 +168,7 @@ class ListingPage(View):
                     auctionListing.currentPrice = newBid.value
                     auctionListing.save()
                     newBid.save()
+                    BidForm = self.AddBidForm()
                 except Exception as err:
                     print(err)
             else:
