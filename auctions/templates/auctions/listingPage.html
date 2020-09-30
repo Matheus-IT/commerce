@@ -48,7 +48,13 @@
 				</ul>
 				<p>
 					{{ listing.bids.all|length }} bids so far.
-					Your bid is the current bid.</p>
+					
+					{% if currentUser ==  listing.lastBidAuthor %}
+						Your bid is the current bid.
+					{% else %}
+						Current bid is from {{ listing.lastBidAuthor }}
+					{% endif %}
+				</p>
 				
 				{% if user.is_authenticated %}
 					<form action="{% url 'auctions:listingPage' listing.id %}" method="post">

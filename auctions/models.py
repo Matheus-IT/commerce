@@ -12,7 +12,7 @@ class AuctionListing(models.Model):
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=120)
     currentPrice = models.DecimalField(max_digits=10, decimal_places=2)
-    lasBidAuthor = models.CharField(max_length=USERNAME_LENGTH)
+    lastBidAuthor = models.CharField(max_length=USERNAME_LENGTH)
     imageUrl = models.CharField(max_length=1024, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=USERNAME_LENGTH)

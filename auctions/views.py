@@ -122,11 +122,13 @@ class ListingPage(View):
 
     def get(self, request, listingId):
         auctionListing = AuctionListing.objects.get(id=listingId)
+        currentUser = request.user.username
 
         return render(request, self.template_name, {
             'listing': auctionListing,
             'BidForm': self.AddBidForm(),
-            'CommentForm': self.AddCommentForm()
+            'CommentForm': self.AddCommentForm(),
+            'currentUser': currentUser
         })
 
     def post(self, request, listingId):
@@ -149,7 +151,9 @@ class ListingPage(View):
                     commentAuthor=currentUser,
                     auction=auctionListing
                 )
+
                 newComment.save()
+                
                 CommentForm = self.AddCommentForm()
             except Exception as err:
                 print(err)
@@ -166,8 +170,11 @@ class ListingPage(View):
                     )
                     
                     auctionListing.currentPrice = newBid.value
+                    auctionListing.lastBidAuthor = currentUser
+
                     auctionListing.save()
                     newBid.save()
+                    
                     BidForm = self.AddBidForm()
                 except Exception as err:
                     print(err)
