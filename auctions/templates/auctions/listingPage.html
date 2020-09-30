@@ -75,6 +75,17 @@
 				{% else %}
 					To bid you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
 				{% endif %}
+
+				{% if currentUser == listing.author %}
+					<div class="dangerZone">
+						<h3 class="title">Danger zone</h3>
+						<div class="closeBidConfirmation">
+							<h5>Do you want to <strong>Close this auction listing?</strong></h5>
+							<p>The last bidder will be the winner</p>
+							<button type="submit" class="btn btn-outline-danger">Close bid</button>
+						</div>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 

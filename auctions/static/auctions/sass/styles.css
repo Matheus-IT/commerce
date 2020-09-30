@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.listingPageContainer .commentSection .newComment, .listingPageContainer .commentSection .comment, .listingPageContainer .commentSection {
+.listingPageContainer .commentSection .newComment, .listingPageContainer .commentSection .comment, .listingPageContainer .commentSection, .listingPageContainer .columnsContainer .dangerZone .closeBidConfirmation {
   padding: 1em;
   border: 0.125em solid rgba(0, 0, 0, 0.15);
   border-radius: 0.5em;
@@ -130,6 +130,12 @@ h1, h2, h3, h4, h5, h6 {
 .listingPageContainer .columnsContainer .listingPrice {
   font-size: 1.6em;
   margin-bottom: 1em;
+}
+.listingPageContainer .columnsContainer .dangerZone {
+  display: block;
+}
+.listingPageContainer .columnsContainer .dangerZone .closeBidConfirmation {
+  border-color: #ed533f;
 }
 .listingPageContainer .commentSection {
   display: block;

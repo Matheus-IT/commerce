@@ -33,6 +33,15 @@
 			font-size: 1.6em;
 			margin-bottom: 1em;
 		}
+
+		.dangerZone {
+			display: block;
+
+			.closeBidConfirmation {
+				@extend %rounded_window;
+				border-color: #ed533f;
+			}
+		}
 	}
 
 	.commentSection {
