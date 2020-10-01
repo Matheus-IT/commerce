@@ -28,6 +28,15 @@ class AuctionListing(models.Model):
         return f'{self.title}'
 
 
+class WatchlistItem(models.Model):
+    auction = models.OneToOneField(
+        AuctionListing,
+        on_delete=models.CASCADE,
+        related_name='watchlistReference'
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 class Comment(models.Model):
     content = models.CharField(max_length=1024)
     commentAuthor = models.CharField(max_length=USERNAME_LENGTH)
