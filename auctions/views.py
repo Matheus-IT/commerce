@@ -217,3 +217,7 @@ def categoriesPage(request):
         'categoryChoices': categoryChoices,
         'filteredAuctionListings': filteredAuctionListings
     })
+
+
+def watchlistPage(request):
+    return render(request, 'auctions/watchlist.html')
