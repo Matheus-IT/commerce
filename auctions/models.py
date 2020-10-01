@@ -34,7 +34,7 @@ class WatchlistItem(models.Model):
         on_delete=models.CASCADE,
         related_name='watchlistReference'
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlistItems')
 
 
 class Comment(models.Model):
