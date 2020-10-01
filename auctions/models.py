@@ -31,8 +31,9 @@ class AuctionListing(models.Model):
 class WatchlistItem(models.Model):
     auction = models.OneToOneField(
         AuctionListing,
-        on_delete=models.CASCADE,
-        related_name='watchlistReference'
+        on_delete=models.DO_NOTHING,
+        related_name='watchlistReference',
+        primary_key=True
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlistItems')
 
