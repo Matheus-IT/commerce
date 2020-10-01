@@ -110,6 +110,14 @@ def createListing(request):
         })
 
 
+def closeListing(request, listingId):
+    listing = AuctionListing.objects.get(pk=listingId)
+    
+
+    msg = f'The winner is {listing.lastBidAuthor}, {listing} was deleted!'
+
+    return HttpResponse(msg)
+
 
 class ListingPage(View):
     from .forms import AddBidForm, AddCommentForm
@@ -139,7 +147,7 @@ class ListingPage(View):
 
         currentUser = request.user.username
 
-        aditionalErrorMessage = ''
+        additionalErrorMessage = ''
 
         if CommentForm.is_valid() and CommentForm.is_bound:
             # create a new comment
@@ -179,7 +187,7 @@ class ListingPage(View):
                 except Exception as err:
                     print(err)
             else:
-                aditionalErrorMessage = """
+                additionalErrorMessage = """
                     <ul class="errorlist">
                         <li><strong>The bid should be greater than the current price</strong></li>
                     </ul>
@@ -191,7 +199,7 @@ class ListingPage(View):
             'listing': auctionListing,
             'BidForm': BidForm,
             'CommentForm': CommentForm,
-            'aditionalErrorMessage': aditionalErrorMessage
+            'additionalErrorMessage': additionalErrorMessage
         })
 
 

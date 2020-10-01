@@ -64,7 +64,7 @@
 							{{ BidForm }}
 						</div>
 
-						{{ aditionalErrorMessage|safe }}
+						{{ additionalErrorMessage|safe }}
 		
 						<div class="form-group">
 							<button class="btn btn-primary" name="{{ BidForm.prefix }}" type="submit">
@@ -82,7 +82,11 @@
 						<div class="closeBidConfirmation">
 							<h5>Do you want to <strong>Close this auction listing?</strong></h5>
 							<p>The last bidder will be the winner</p>
-							<button type="submit" class="btn btn-outline-danger">Close bid</button>
+							<form action="{% url 'auctions:closeListing' listing.id %}" method="post">
+								{% csrf_token %}
+
+								<button type="submit" class="btn btn-outline-danger">Close bid</button>
+							</form>
 						</div>
 					</div>
 				{% endif %}
