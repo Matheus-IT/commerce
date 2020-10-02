@@ -25,7 +25,12 @@
 
 				{% if user.is_authenticated %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'auctions:watchlistPage' %}">Watchlist</a>
+						<a class="nav-link" href="{% url 'auctions:watchlistPage' %}">
+							Watchlist
+							<div class="sizeOfWatchlist">
+								{{ user.watchlistItems.all|length }}
+							</div>
+						</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'auctions:createListing' %}">Create Listing</a>
