@@ -10,7 +10,7 @@
 
 {% block body %}
 	<div class="categoriesPage">
-		<h1 class="title">Categories</h1>
+		<h2 class="title">Categories</h1>
 	
 		<form class="formChooseCategory" action="{% url 'auctions:categories' %}" method="post">
 			{% csrf_token %}

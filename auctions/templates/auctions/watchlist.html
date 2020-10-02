@@ -1,11 +1,37 @@
 {% extends './layout.html' %}
 
+{% load static %}
+
+{% block title %}
+	Watchlist
+{% endblock %}
+
 {% block body %}
-	<ul class="watchlist">
-		{% for item in watchlist %}
-			<li>{{ item }}</li>
-			{% empty %}
-				<li>No items</li>
-		{% endfor %}
-	</ul>
+	<div class="watchlistPageContainer">
+		<h2>Watchlist</h2>
+		
+		<ul class="auctionListings">
+			{% for item in watchlist %}
+				<li class="auction">
+					{% if item.auction.imageUrl %}
+						<img class="auctionImg" src={{ item.auction.imageUrl }} alt={{ item.auction.title }}>
+					{% else %}
+						<img class="auctionImg" src="{% static 'auctions/Images/No_image_available.png' %}">
+					{% endif %}
+					
+					<div class="textRelated">
+						<a href="{% url 'auctions:listingPage' item.auction.id %}">
+							<h3 class="auctionTitle">{{ item.auction.title }}</h3>
+						</a>
+						<strong>Price:</strong> ${{ item.auction.currentPrice }} <br>
+						<p>{{ item.auction.description }}</p>
+						<em>Created {{ item.auction.createdAt }}</em>
+					</div>
+				</li>
+
+				{% empty %}
+					<li class="alert alert-primary">Your watchlist is empty, try adding some items</li>
+			{% endfor %}
+		</ul>
+	</div>
 {% endblock %}

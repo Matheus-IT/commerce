@@ -52,11 +52,6 @@
 			
 			<div class="col2">
 				<h2 class="title">Bids</h2>
-				<ul>
-					{% for bid in listing.bids.all %}
-						<li>{{ bid }}</li>
-					{% endfor %}
-				</ul>
 				<p>
 					{{ listing.bids.all|length }} bids so far.
 					
