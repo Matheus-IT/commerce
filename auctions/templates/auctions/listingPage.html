@@ -12,10 +12,18 @@
 			<div class="col1">
 				<h2 class="title">Listing: {{ listing.title }}</h2>
 	
-				<form action="{% url 'auctions:watchlistToggle' listing.id %}" method='post'>
-					{% csrf_token %}
-					<button type="submit" class="watchListButton">WatchList</button>
-				</form>
+				{% if user.is_authenticated %}
+					<form action="{% url 'auctions:watchlistToggle' listing.id %}" method='post'>
+						{% csrf_token %}
+						<button type="submit" class="watchListButton">
+							{% if listing.watchlistReference %}
+								Remove from WatchList
+							{% else %}
+								Add to Watchlist
+							{% endif %}
+						</button>
+					</form>
+				{% endif %}
 				<br>
 				
 				{% if listing.imageUrl %}
