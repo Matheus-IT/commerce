@@ -1,5 +1,11 @@
 {% extends './layout.html' %}
 
 {% block body %}
-	{{ request.session }}
+	<ul class="watchlist">
+		{% for item in watchlist %}
+			<li>{{ item }}</li>
+			{% empty %}
+				<li>No items</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

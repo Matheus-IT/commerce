@@ -13,5 +13,6 @@ urlpatterns = [
     path('close/<int:listingId>', views.closeListing, name='closeListing'),
     path('listings/<int:listingId>', views.ListingPage.as_view(), name='listingPage'),
     path('categories/', views.categoriesPage, name='categories'),
-    path('watchlist/', views.watchlistPage, name='watchlistPage')
+    path('watchlist/', views.watchlistPage, name='watchlistPage'),
+    path('watchlistToggle/<int:listingId>', views.watchlistToggle, name='watchlistToggle')
 ]

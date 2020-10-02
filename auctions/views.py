@@ -10,6 +10,9 @@ from .models import *
 
 
 def index(request):
+    if 'watchlist' not in request.session:
+        request.session['watchlist'] = []
+    
     return render(request, 'auctions/index.html', {
         'auctionListings': AuctionListing.objects.all()
     })
@@ -220,4 +223,27 @@ def categoriesPage(request):
 
 
 def watchlistPage(request):
-    return render(request, 'auctions/watchlist.html')
+    watchlist = request.user.watchlistItems.all()
+    
+    return render(request, 'auctions/watchlist.html', { 'watchlist': watchlist })
+
+
+def watchlistToggle(request, listingId):
+    from django.core.exceptions import ObjectDoesNotExist
+    
+    watchlistItems = request.user.watchlistItems
+    auction = AuctionListing.objects.get(pk=listingId)
+
+    try:
+        item = watchlistItems.get(auction_id=listingId)
+        item.delete()
+        print('item deleted')
+    except ObjectDoesNotExist:
+        try:
+             newItem = watchlistItems.create(auction=auction, user=request.user)
+             newItem.save()
+             print('item created')
+        except Exception as err:
+             print(err)
+    finally:    
+        return HttpResponseRedirect(reverse('auctions:watchlistPage'))
