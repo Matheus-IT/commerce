@@ -20,7 +20,7 @@
 }
 
 .nav {
-	$link_color: black;
+	$link_color: #FFF;
 
 	&-item {
 		&:not(:last-child) {
@@ -29,6 +29,7 @@
 	}
 
 	&-link {
+		display: flex;
 		color: $link_color;
 		font-weight: 600;
 		border-radius: 0.3em;
@@ -39,9 +40,17 @@
 		transition: all 250ms ease-in-out;
 
 		&:hover {
-			color: lighten($link_color, 90);
+			color: darken($link_color, 90);
 			border-bottom-color: rgb(34, 34, 34);
 			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+		}
+
+		.sizeOfWatchlist {
+			padding: 0 0.4em;
+			margin-left: 0.4em;
+
+			background-color: $darkGray;
+			border-radius: 0.2em;
 		}
 	}
 }

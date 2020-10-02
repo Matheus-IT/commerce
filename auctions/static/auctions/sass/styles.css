@@ -47,7 +47,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 0.5em;
 }
 .nav-link {
-  color: black;
+  display: flex;
+  color: #FFF;
   font-weight: 600;
   border-radius: 0.3em;
   border-bottom: 0.125em solid #999999;
@@ -56,9 +57,15 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 250ms ease-in-out;
 }
 .nav-link:hover {
-  color: #e6e6e6;
+  color: #1a1a1a;
   border-bottom-color: #222222;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.nav-link .sizeOfWatchlist {
+  padding: 0 0.4em;
+  margin-left: 0.4em;
+  background-color: #555555;
+  border-radius: 0.2em;
 }
 
 @media (max-width: 500px) {
