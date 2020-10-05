@@ -12,7 +12,7 @@
 			<div class="col1">
 				<h2 class="title">Listing: {{ listing.title }}</h2>
 	
-				{% if user.is_authenticated %}
+				{% if user.is_authenticated and not listing.isClosed %}
 					<form action="{% url 'auctions:watchlistToggle' listing.id %}" method='post'>
 						{% csrf_token %}
 						<button type="submit" class="watchListButton">
@@ -51,37 +51,41 @@
 			</div>
 			
 			<div class="col2">
-				<h2 class="title">Bids</h2>
-				<p>
-					{{ listing.bids.all|length }} bids so far.
-					
-					{% if listing.lastBidAuthor %}
-						{% if currentUser ==  listing.lastBidAuthor %}
-							Your bid is the current bid.
-						{% else %}
-							Current bid is from {{ listing.lastBidAuthor }}
-						{% endif %}
-					{% endif %}
-				</p>
-				
-				{% if user.is_authenticated %}
-					<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
-						{% csrf_token %}
-
-						<div class="form-group">
-							{{ BidForm }}
-						</div>
-
-						{{ additionalErrorMessage|safe }}
+				{% if not listing.isClosed %}
+					<div class="bidArea">
+						<h2 class="title">Bids</h2>
+						<p>
+							{{ listing.bids.all|length }} bids so far.
+							
+							{% if listing.lastBidAuthor %}
+								{% if currentUser ==  listing.lastBidAuthor %}
+									Your bid is the current bid.
+								{% else %}
+									Current bid is from {{ listing.lastBidAuthor }}
+								{% endif %}
+							{% endif %}
+						</p>
+						
+						{% if user.is_authenticated %}
+							<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
+								{% csrf_token %}
 		
-						<div class="form-group">
-							<button class="btn btn-primary" name="{{ BidForm.prefix }}" type="submit">
-								Place bid
-							</button>
-						</div>
-					</form>
-				{% else %}
-					To bid you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+								<div class="form-group">
+									{{ BidForm }}
+								</div>
+		
+								{{ additionalErrorMessage|safe }}
+				
+								<div class="form-group">
+									<button class="btn btn-primary" name="{{ BidForm.prefix }}" type="submit">
+										Place bid
+									</button>
+								</div>
+							</form>
+						{% else %}
+							To bid you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+						{% endif %}
+					</div>
 				{% endif %}
 
 				{% if currentUser == listing.author %}
@@ -94,6 +98,19 @@
 								{% csrf_token %}
 
 								<button type="submit" class="btn btn-outline-danger">Close bid</button>
+							</form>
+						</div>
+					</div>
+				{% elif listing.isClosed and user.username == listing.lastBidAuthor %}
+					<div class="winnerArea">
+						<h3 class="title">Congratulations, you're the winner!</h3>
+						<div class="deleteBidConfirmation">
+							<h5>Do you want to <strong>delete this auction listing?</strong></h5>
+							<p>Since this bid is closed, you can decide to delete it from the database.</p>
+							<form action="{% url 'auctions:deleteListing' listing.id %}" method="post">
+								{% csrf_token %}
+
+								<button type="submit" class="btn btn-outline-warning">Delete bid</button>
 							</form>
 						</div>
 					</div>
@@ -115,19 +132,25 @@
 				<p class="no_comments_yet">No comments yet...</p>
 			{% endfor %}
 
-			{% if user.is_authenticated %}
-				<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
-					{% csrf_token %}
-					
-					{{ CommentForm }}
+			{% if not listing.isClosed %}
+				{% if user.is_authenticated %}
+					<form action="{% url 'auctions:listingPage' listing.id %}" method="post">
+						{% csrf_token %}
+						
+						{{ CommentForm }}
 
-					<button class="btn btn-primary postComment" name="{{ CommentForm.prefix }}" type="submit">
-						Post Comment
-					</button>
-				</form>
+						<button class="btn btn-primary postComment" name="{{ CommentForm.prefix }}" type="submit">
+							Post Comment
+						</button>
+					</form>
+				{% else %}
+					<em>
+						To add a comment you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+					</em>
+				{% endif %}
 			{% else %}
 				<em>
-					To add a comment you need to stay <a href="{% url 'auctions:login' %}">logged in</a>
+					The comment section has been disabled.
 				</em>
 			{% endif %}
 		</div>

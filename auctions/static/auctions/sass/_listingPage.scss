@@ -42,6 +42,11 @@
 				border-color: #ed533f;
 			}
 		}
+
+		.winnerArea {
+			@extend %rounded_window;
+			border-color: rgb(108, 168, 108);
+		}
 	}
 
 	.commentSection {
