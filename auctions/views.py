@@ -141,6 +141,17 @@ def closeListing(request, listingId):
     return render(request, 'auctions/closeListing.html', { 'mensagem': msg })
 
 
+def deleteListing(request, listingId):
+    try:
+        listing = AuctionListing.objects.get(pk=listingId)
+        listing.delete()
+        print('The auction listing was deleted')
+    except Exception as exc:
+        print(exc)
+    
+    return HttpResponseRedirect(reverse('auctions:watchlistPage'))
+
+
 class ListingPage(View):
     from .forms import AddBidForm, AddCommentForm
 
