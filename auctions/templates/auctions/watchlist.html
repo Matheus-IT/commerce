@@ -23,9 +23,14 @@
 						<a href="{% url 'auctions:listingPage' item.auction.id %}">
 							<h3 class="auctionTitle">{{ item.auction.title }}</h3>
 						</a>
-						<strong>Price:</strong> ${{ item.auction.currentPrice }} <br>
-						<p>{{ item.auction.description }}</p>
-						<em>Created {{ item.auction.createdAt }}</em>
+
+						{% if item.auction.isClosed %}
+							<h3 class="alert alert-success">Closed. You Won!</h3>
+						{% else %}
+							<strong>Price:</strong> ${{ item.auction.currentPrice }} <br>
+							<p>{{ item.auction.description }}</p>
+							<em>Created {{ item.auction.createdAt }}</em>
+						{% endif %}
 					</div>
 				</li>
 
