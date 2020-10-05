@@ -171,7 +171,10 @@ class ListingPage(View):
         auctionListing = AuctionListing.objects.get(id=listingId)
         currentUser = request.user.username
 
-        isInWatchlist = self.verifyItemInWatchlist(request.user.watchlistItems.all(), listingId)
+        isInWatchlist = None
+
+        if request.user.is_authenticated:
+            isInWatchlist = self.verifyItemInWatchlist(request.user.watchlistItems.all(), listingId)
 
         return render(request, self.template_name, {
             'listing': auctionListing,
@@ -188,6 +191,11 @@ class ListingPage(View):
         CommentForm = self._getForm(request, self.AddCommentForm, prefix=self.AddCommentForm.prefix)
 
         currentUser = request.user.username
+
+        isInWatchlist = None
+
+        if request.user.is_authenticated:
+            isInWatchlist = self.verifyItemInWatchlist(request.user.watchlistItems.all(), listingId)
 
         additionalErrorMessage = ''
 
@@ -242,6 +250,7 @@ class ListingPage(View):
             'BidForm': BidForm,
             'currentUser': currentUser,
             'CommentForm': CommentForm,
+            'listingIsInWatchlist': isInWatchlist,
             'additionalErrorMessage': additionalErrorMessage
         })
 
