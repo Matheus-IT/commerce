@@ -30,22 +30,24 @@
 
 		<ul class="auctionListings">
 			{% for auction in filteredAuctionListings %}
-				<li class="auction">
-					{% if auction.imageUrl %}
-						<img class="auctionImg" src={{ auction.imageUrl }} alt={{ auction.title }}>
-					{% else %}
-						<img class="auctionImg" src="{% static 'auctions/Images/No_image_available.png' %}">
-					{% endif %}
-					
-					<div class="textRelated">
-						<a href="{% url 'auctions:listingPage' auction.id %}">
-							<h3 class="auctionTitle">{{ auction.title }}</h3>
-						</a>
-						<strong>Price:</strong> ${{ auction.currentPrice }} <br>
-						<p>{{ auction.description }}</p>
-						<em>Created {{ auction.createdAt }}</em>
-					</div>
-				</li>
+				{% if not auction.isClosed %}
+					<li class="auction">
+						{% if auction.imageUrl %}
+							<img class="auctionImg" src={{ auction.imageUrl }} alt={{ auction.title }}>
+						{% else %}
+							<img class="auctionImg" src="{% static 'auctions/Images/No_image_available.png' %}">
+						{% endif %}
+						
+						<div class="textRelated">
+							<a href="{% url 'auctions:listingPage' auction.id %}">
+								<h3 class="auctionTitle">{{ auction.title }}</h3>
+							</a>
+							<strong>Price:</strong> ${{ auction.currentPrice }} <br>
+							<p>{{ auction.description }}</p>
+							<em>Created {{ auction.createdAt }}</em>
+						</div>
+					</li>
+				{% endif %}
 			{% endfor %}
 		</ul>
 	</div>

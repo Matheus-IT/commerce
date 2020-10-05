@@ -119,6 +119,7 @@ def closeListing(request, listingId):
     if listing.lastBidAuthor:
         winner = User.objects.get(username=listing.lastBidAuthor)
         listing.isClosed = True
+        listing.save()
 
         closedListing = winner.watchlistItems.create(auction=listing, user=winner)
         closedListing.save()
