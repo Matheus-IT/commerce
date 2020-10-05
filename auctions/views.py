@@ -117,20 +117,28 @@ def closeListing(request, listingId):
     listing = AuctionListing.objects.get(pk=listingId)
 
     if listing.lastBidAuthor:
-        winner = User.objects.get(username=listing.lastBidAuthor)
-        listing.isClosed = True
-        listing.save()
+        try:
+            winner = User.objects.get(username=listing.lastBidAuthor)
+            listing.isClosed = True
+            listing.save()
+            
+            try:
+                # verify if the item is already inside the watchlist
+                closedListing = winner.watchlistItems.get(auction_id=listing.id)
+            except:
+                closedListing = winner.watchlistItems.create(auction=listing, user=winner)
+                closedListing.save()
 
-        closedListing = winner.watchlistItems.create(auction=listing, user=winner)
-        closedListing.save()
-
-        msg = f'The winner is {winner.username}, {listing} was closed!'
+            msg = f'The winner is {winner.username}, {listing} was closed!'
+        except Exception as exc:
+            msg = exc
     else:
         listing.delete()
-        msg = f'There\'s no winner, was closed!'
+        msg = f'There\'s no winner, the listing was deleted!'
 
+    print(msg)
 
-    return HttpResponse(msg)
+    return render(request, 'auctions/closeListing.html', { 'mensagem': msg })
 
 
 class ListingPage(View):
@@ -221,6 +229,7 @@ class ListingPage(View):
         return render(request, self.template_name, {
             'listing': auctionListing,
             'BidForm': BidForm,
+            'currentUser': currentUser,
             'CommentForm': CommentForm,
             'additionalErrorMessage': additionalErrorMessage
         })
