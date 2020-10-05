@@ -16,7 +16,7 @@
 					<form action="{% url 'auctions:watchlistToggle' listing.id %}" method='post'>
 						{% csrf_token %}
 						<button type="submit" class="watchListButton">
-							{% if listing.watchlistReference %}
+							{% if listingIsInWatchlist %}
 								Remove from WatchList
 							{% else %}
 								Add to Watchlist

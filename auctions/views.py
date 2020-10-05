@@ -131,15 +131,24 @@ class ListingPage(View):
         data = request.POST if prefix in request.POST else None
         return formClass(data, prefix=prefix)
 
+    def verifyItemInWatchlist(self, watchlist, listingId):
+        for item in watchlist:
+            if listingId == item.auction_id:
+                return True
+        return False
+
     def get(self, request, listingId):
         auctionListing = AuctionListing.objects.get(id=listingId)
         currentUser = request.user.username
+
+        isInWatchlist = self.verifyItemInWatchlist(request.user.watchlistItems.all(), listingId)
 
         return render(request, self.template_name, {
             'listing': auctionListing,
             'BidForm': self.AddBidForm(),
             'CommentForm': self.AddCommentForm(),
-            'currentUser': currentUser
+            'currentUser': currentUser,
+            'listingIsInWatchlist': isInWatchlist
         })
 
     def post(self, request, listingId):
@@ -235,14 +244,14 @@ def watchlistToggle(request, listingId):
     auction = AuctionListing.objects.get(pk=listingId)
 
     try:
+        # if there's already a watchlist item corresponding to the
+        # current listing
         item = watchlistItems.get(auction_id=listingId)
         item.delete()
-        print('item deleted')
     except ObjectDoesNotExist:
         try:
              newItem = watchlistItems.create(auction=auction, user=request.user)
              newItem.save()
-             print('item created')
         except Exception as err:
              print(err)
     finally:    
