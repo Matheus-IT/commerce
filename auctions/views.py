@@ -115,9 +115,19 @@ def createListing(request):
 
 def closeListing(request, listingId):
     listing = AuctionListing.objects.get(pk=listingId)
-    
 
-    msg = f'The winner is {listing.lastBidAuthor}, {listing} was deleted!'
+    if listing.lastBidAuthor:
+        winner = User.objects.get(username=listing.lastBidAuthor)
+        listing.isClosed = True
+
+        closedListing = winner.watchlistItems.create(auction=listing, user=winner)
+        closedListing.save()
+
+        msg = f'The winner is {winner.username}, {listing} was closed!'
+    else:
+        listing.delete()
+        msg = f'There\'s no winner, was closed!'
+
 
     return HttpResponse(msg)
 

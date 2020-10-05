@@ -55,10 +55,12 @@
 				<p>
 					{{ listing.bids.all|length }} bids so far.
 					
-					{% if currentUser ==  listing.lastBidAuthor %}
-						Your bid is the current bid.
-					{% else %}
-						Current bid is from {{ listing.lastBidAuthor }}
+					{% if listing.lastBidAuthor %}
+						{% if currentUser ==  listing.lastBidAuthor %}
+							Your bid is the current bid.
+						{% else %}
+							Current bid is from {{ listing.lastBidAuthor }}
+						{% endif %}
 					{% endif %}
 				</p>
 				
